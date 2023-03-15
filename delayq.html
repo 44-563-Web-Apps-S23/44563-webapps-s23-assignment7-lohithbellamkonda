@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html> 
+	<head> 
+	
+        <title>Delay Queue</title>
+	
+    <style>
+	
+    .flex-container {
+	
+        display: flex;  flex-direction:row;
+			background-color: red;
+	
+        }
+
+	
+        .flex-container > div {  /*div children of the flex container*/
+		background-color:  #f1f1f1;; 
+	
+        margin: 11px;  padding: 20px;  font-size: 30px;
+		}
+
+
+		/* Responsive layout */
+		
+        @media (max-width: 600px) { 
+		.flex-container{
+		
+            flex-direction:column;
+			background-color: rgb(67, 5, 165);
+		
+        }
+		}
+		
+        </style>
+</head>
+<body>
+	
+    <div>Lohith Vamsi Bellamkonda builds a delaying queue.</div>
+	
+    
+    <input type="text" id="input">
+	<div class="flex-container" id="target">
+	
+        <div class="delayQ">room 1</div>   
+		<div class="delayQ"> room 2</div>  
+	
+        <div class="delayQ"> room 3</div>  
+	</div>
+	
+	<p> 
+	
+    
+        Press the button to create an new element of type div and then add it to the container.
+	</p>
+	
+    <button onclick="makeNewDiv()">Add value</button>
+	<button onclick="get()">Get</button>
+	
+    <button onclick="delay()">Delay</button>
+
+    <button onclick="Promote()">Promote</button>
+
+</body>
+<script>
+	 let queueItems=[];
+    let removedItem;
+    function makeNewDiv(){
+		/* make the div and its text */
+	
+    
+        let element = document.createElement("div")
+	
+    
+        element.innerHTML = document.getElementById('input').value
+		
+        element.className = 'delayQ'
+		element.style.color = "orange"
+
+
+		/* add it to the container */
+		let container = document.getElementById('target')
+		
+        container.appendChild(element)
+	}
+	queueItems=document.getElementsByClassName('delayQ');
+            console.log(document.getElementsByClassName('delayQ'));
+	
+    function get() {
+	
+         queueItems = document.getElementsByClassName('delayQ')
+
+         let len=queueItems.length;
+        if(len>0){
+           // removedItem=queueItems[0];
+            //console.log(removedItem.innerHTML);
+            queueItems[0].remove();
+        }
+        
+
+    }
+    function delay(){
+        queueItems=document.getElementsByClassName('delayQ');
+        let len=queueItems.length;
+        console.log(queueItems);
+        if(len==0 || len==1){
+
+        }
+        else if(len>=2){
+            console.log("length is: "+len);
+            removedItem=queueItems[0];
+            console.log(removedItem);
+            console.log(removedItem.innerHTML);
+            queueItems[0].remove();
+            let container = document.getElementById('target')
+	        container.append(removedItem,container.firstChild)
+        }
+        
+    }
+    function Promote(){
+        let len=queueItems.length;
+        
+        let mal=Math.floor(Math.random()*len);
+        console.log(mal);
+        removedItem=queueItems[mal];
+            console.log(removedItem);
+            console.log(removedItem.innerHTML);
+            queueItems[mal].remove();
+            let container = document.getElementById('target')
+	        container.insertBefore(removedItem,container.firstChild)
+    }
+</script>
+</html>	

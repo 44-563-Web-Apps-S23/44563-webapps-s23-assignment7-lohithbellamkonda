@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Check Your Speed </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h2>Lohith Vamsi Bellamkonda speed check</h2>
+
+    <div class="container border" style="background-color:rgb(145, 207, 83);">
+   
+        <p id="target">Your Time</p>
+      </div>
+   
+      <div class="container border" style="background-color:rgb(145, 207, 83)">
+        <p id="counter">Count</p>
+   
+    </div>
+      <br>
+   
+      <div class="container">
+   
+        <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
+        <button type="button" class="btn btn-info" onclick="recordTime()">React</button>
+   
+    </div>
+      <script> 
+   
+   let reactTime = undefined
+        function recordTime(){
+            reactTime = Date.now()
+            console.log(reactTime)
+   
+        }
+        function startTime(){
+   
+            for(let loh=0;loh<=8;loh++){
+                setTimeout(() => {
+   
+                    document.getElementById('counter').innerHTML = "Count: "+loh
+                }, (8-loh)*1000)
+            }
+   
+            setTimeout(()=>{
+            if(reactTime==undefined){
+                document.getElementById('target').innerHTML="Too Slow"
+   
+            }
+            else{
+              let endTime = Date.now()
+   
+              document.getElementById('target').innerHTML = "Time was "+(endTime-reactTime)
+            }
+            },8000)
+        }
+        function randomStart(){
+        startCount = Math.floor(Math.random()*(10-2+1)+2)
+        startTime()
+    }
+      </script>
+
+</body>
+</html>
